@@ -104,12 +104,12 @@ public class Grafo {
         while (arista != null){
             if(arista.incide == vert2) {
                 return true;
-                }
-            arista = arista.sigArista;
             }
+            arista = arista.sigArista;
+        }
 
         return false;
-        }
+    }
 
 
     public void agregarArista(int v1, int v2, int peso){
@@ -146,6 +146,16 @@ public class Grafo {
             aux = aux.sigArista;
         }
         aux.sigArista = nuevo;
+    }
+
+
+    public NodoGrafo devolverVertice(int v){
+
+        if(!existeVertice(v)){
+            return null;
+        }
+
+        return vertices.get(v);
     }
 
 
