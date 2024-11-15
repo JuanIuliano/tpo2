@@ -29,7 +29,7 @@ public class Main {
         frame.add(panelGrafo);
         frame.setVisible(true);
 
-        d.iniciarDijkstra(55);
+        d.iniciarDijkstra(51);
         System.out.println("fin");
 
         int opc;
