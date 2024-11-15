@@ -1,11 +1,12 @@
 import grafo.Dijkstra;
 import grafo.Grafico;
 import grafo.Grafo;
-
+import java.util.Scanner;
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
         Grafo g = new Grafo();
         Grafico graf = new Grafico(g);
@@ -28,7 +29,18 @@ public class Main {
         frame.add(panelGrafo);
         frame.setVisible(true);
 
-        d.iniciarDijkstra(51);
+        d.iniciarDijkstra(55);
         System.out.println("fin");
+
+        int opc;
+        while(true){
+            System.out.println("Ingresa el vertice para ver su costo mínimo desde 51 // -1 para terminar");
+            opc = sc.nextInt();
+            if(opc == -1){
+                break;
+            }
+            d.mostrarCaminoMinimo(opc);
+        }
+        System.out.println("Fin");
     }
 }

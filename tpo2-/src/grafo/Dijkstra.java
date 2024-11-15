@@ -67,7 +67,11 @@ public class Dijkstra {
 
         // Debuggear
         System.out.println();
-        System.out.println("Actual: " + cola.Primero().vertice);
+        try {
+            System.out.println("Actual: " + cola.Primero().vertice);
+        }catch (Exception e){
+            System.out.println(e);
+        }
         System.out.println("VISITADOS");
         System.out.println(visitados.toString());
         System.out.println("CAMINOS");
@@ -115,11 +119,6 @@ public class Dijkstra {
 
         // Recorremos las aristas del vértice
         while (arista != null) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
             Grafo.NodoGrafo incide = arista.incide;
             int nuevoPeso = pesoAcumulado + arista.peso;
@@ -127,9 +126,9 @@ public class Dijkstra {
             // Debuggear
             System.out.println("Comprobando incidencia en: " + incide);
 
-            // Si el vértice ya fue visitado, pasamos a la siguiente arista
-            if (visitados.contains(incide)) {
-                System.out.println("El vértice: " + incide + " ya fue visitado");
+            // Si el vértice ya fue visitado o es un centro de distribucion, pasamos a la siguiente arista
+            if (visitados.contains(incide) || incide instanceof Grafo.NodoCentroDistribucion) {
+                System.out.println("El vértice: " + incide + " ya fue visitado o es un centro de distribuciòn");
                 arista = arista.sigArista;
                 continue;
             }
@@ -154,6 +153,25 @@ public class Dijkstra {
         }
 
         dijkstraRecursivo(cola);
+    }
+
+
+
+    public void mostrarCaminoMinimo(int v){
+        //Obtener el objeto nodografo equivalente a v
+        Grafo.NodoGrafo v_;
+        if(g.existeVertice(v)){
+            v_ = g.devolverVertice(v);
+        }else{
+            System.out.println("No existe el vertice");
+            return;
+        }
+
+        if(!(this.caminos_.containsKey(v_))){
+            System.out.println("No existe el camino a ese vertice desde 51");
+            return;
+        }
+        System.out.println(caminos_.get(v_));
     }
 
 

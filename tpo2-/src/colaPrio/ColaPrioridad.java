@@ -52,6 +52,9 @@ public class ColaPrioridad{
 
     public Grafo.NodoGrafo Primero() {
         // Devuelve la información del nodo con mayor prioridad
+        if(this.ColaVacia()) {
+            return null;
+        }
         return mayorPrioridad.grafoActual;
     }
 
